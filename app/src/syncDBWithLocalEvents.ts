@@ -6,20 +6,16 @@ import { SystemSoundsVolume } from "./services/SystemSoundsVolume";
 export const syncDBWithLocalEvents = async () => {
   await SystemSoundsVolume.setVolume(+db.get("config.volume").value());
   await Channel.setChannel(+db.get("config.channel").value());
-
-  function volumeChanged(volume: number) {
+  function handleVolumeChange(volume: number) {
     db.set("config.volume", volume).write();
   }
-
-  function channelChanged(channel: number) {
+  function handleChannelChange(channel: number) {
     db.set("config.channel", channel).write();
   }
-
-  localEvents.on("volume", volumeChanged);
-  localEvents.on("channel", channelChanged);
-
+  localEvents.on("volume", handleVolumeChange);
+  localEvents.on("channel", handleChannelChange);
   return () => {
-    localEvents.off("volume", volumeChanged);
-    localEvents.off("channel", channelChanged);
+    localEvents.off("volume", handleVolumeChange);
+    localEvents.off("channel", handleChannelChange);
   };
 };
