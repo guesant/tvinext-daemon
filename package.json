@@ -1,0 +1,44 @@
+{
+  "name": "@guesant/tvinext-daemon",
+  "author": "Gabriel Rodrigues",
+  "version": "0.0.0",
+  "license": "ISC",
+  "main": "app/build/app.js",
+  "scripts": {
+    "prod:start": "npm run prod:build && npm run start",
+    "prod:build": "env NODE_ENV=production tsc -p .",
+    "start": "env NODE_ENV=production node ./app/build/app.js",
+    "dev:watch": "tsc -p . --watch",
+    "dev:start": "node-dev --respawn app/build/app.js",
+    "dev:prepare": "mkdir -p app/build; rm -f app/build/app.js; touch app/build/app.js",
+    "dev": "npm run dev:prepare && env NODE_ENV=development concurrently 'npm:dev:watch' 'npm:dev:start'"
+  },
+  "dependencies": {
+    "axios": "^0.21.1",
+    "body-parser": "^1.19.0",
+    "concurrently": "^5.3.0",
+    "config": "^3.3.3",
+    "cors": "^2.8.5",
+    "env": "^0.0.2",
+    "errorhandler": "^1.5.1",
+    "eventemitter3": "^4.0.7",
+    "execa": "^5.0.0",
+    "express": "^4.17.1",
+    "helmet": "^4.4.1",
+    "iptv-playlist-parser": "^0.6.0",
+    "lowdb": "^1.0.0",
+    "morgan": "^1.10.0",
+    "node-dev": "^6.2.0",
+    "socket.io": "^3.1.0",
+    "tslib": "^2.1.0",
+    "typescript": "^4.1.3"
+  },
+  "devDependencies": {
+    "@types/body-parser": "^1.19.0",
+    "@types/config": "^0.0.38",
+    "@types/cors": "^2.8.9",
+    "@types/errorhandler": "^1.5.0",
+    "@types/lowdb": "^1.0.9",
+    "@types/morgan": "^1.9.2"
+  }
+}
