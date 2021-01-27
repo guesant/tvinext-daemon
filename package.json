@@ -11,7 +11,8 @@
     "dev:watch": "tsc -p . --watch",
     "dev:start": "node-dev --respawn app/build/app.js",
     "dev:prepare": "mkdir -p app/build; rm -f app/build/app.js; touch app/build/app.js",
-    "dev": "npm run dev:prepare && env NODE_ENV=development concurrently 'npm:dev:watch' 'npm:dev:start'"
+    "dev": "npm run dev:prepare && env NODE_ENV=development concurrently 'npm:dev:watch' 'npm:dev:start'",
+    "prepare": "mkdir -p db; touch db/data.json; pnpm run prod:build"
   },
   "dependencies": {
     "axios": "^0.21.1",
