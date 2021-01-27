@@ -1,8 +1,8 @@
 import { Router } from "express";
 import { Channel } from "../../services/Channel";
 import { Channels } from "../../services/Channels";
-import { System } from "../../services/System";
-import { Volume } from "../../services/Volume";
+import { SystemSound } from "../../services/SystemSounds";
+import { SystemSoundsVolume } from "../../services/SystemSoundsVolume";
 
 const v1 = Router();
 
@@ -11,17 +11,17 @@ const v1 = Router();
  */
 
 v1.get("/volume", async (_, res) => {
-  res.json(await System.getVolume());
+  res.json(await SystemSound.getVolume());
 });
 
 v1.get("/volume/increment", async (_, res) => {
-  await Volume.increment(0.05);
-  res.json(await System.getVolume());
+  await SystemSoundsVolume.increment(0.05);
+  res.json(await SystemSound.getVolume());
 });
 
 v1.get("/volume/decrement", async (_, res) => {
-  await Volume.decrement(0.05);
-  res.json(await System.getVolume());
+  await SystemSoundsVolume.decrement(0.05);
+  res.json(await SystemSound.getVolume());
 });
 
 /**
