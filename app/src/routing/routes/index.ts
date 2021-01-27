@@ -4,8 +4,6 @@ import { Channels } from "../../services/Channels";
 import { SystemSound } from "../../services/SystemSounds";
 import { SystemSoundsVolume } from "../../services/SystemSoundsVolume";
 
-const routes = Router();
-
 const v1 = Router();
 
 /**
@@ -61,6 +59,4 @@ v1.post("/channel/:id", async (req, res) => {
   return res.sendStatus(401);
 });
 
-routes.use("/api/v1", v1);
-
-export { routes };
+export { v1 };
